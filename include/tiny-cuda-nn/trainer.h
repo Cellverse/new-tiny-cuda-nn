@@ -150,6 +150,10 @@ public:
 		backward(nullptr, ctx, input);
 	}
 
+	void set_learning_rate(float learning_rate) {
+		m_optimizer->set_learning_rate(learning_rate);
+	}
+
 	void optimizer_step(cudaStream_t stream, float loss_scale) {
 		m_optimizer->step(stream, loss_scale, m_params_full_precision, m_params, m_param_gradients);
 	}

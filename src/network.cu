@@ -118,8 +118,6 @@ uint32_t minimum_alignment(const json& network) {
 #if TCNN_MIN_GPU_ARCH > 70
 		uint32_t n_neurons = network.value("n_neurons", 128u);
 		switch (n_neurons) {
-			case  16: return FullyFusedMLP<network_precision_t,  16>::REQUIRED_ALIGNMENT();
-			case  32: return FullyFusedMLP<network_precision_t,  32>::REQUIRED_ALIGNMENT();
 			case  64: return FullyFusedMLP<network_precision_t,  64>::REQUIRED_ALIGNMENT();
 			case 128: return FullyFusedMLP<network_precision_t, 128>::REQUIRED_ALIGNMENT();
 			default: throw std::runtime_error{fmt::format("FullyFusedMLP only supports 16, 32, 64, and 128 neurons, but got {}. Use CutlassMLP instead if this is a requirement.", n_neurons)};
@@ -150,8 +148,6 @@ Network<T>* create_network(const json& network) {
 
 			uint32_t n_neurons = network.value("n_neurons", 128u);
 			switch (n_neurons) {
-				case  16: return new FullyFusedMLP<T,  16>{TCNN_FULLY_FUSED_PARAMS};
-				case  32: return new FullyFusedMLP<T,  32>{TCNN_FULLY_FUSED_PARAMS};
 				case  64: return new FullyFusedMLP<T,  64>{TCNN_FULLY_FUSED_PARAMS};
 				case 128: return new FullyFusedMLP<T, 128>{TCNN_FULLY_FUSED_PARAMS};
 				default: throw std::runtime_error{fmt::format("FullyFusedMLP only supports 16, 32, 64, and 128 neurons, but got {}. Use CutlassMLP instead if this is a requirement.", n_neurons)};

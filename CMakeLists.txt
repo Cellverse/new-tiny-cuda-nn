@@ -267,6 +267,7 @@ set(TCNN_SOURCES
 	src/object.cu
 	src/optimizer.cu
 	src/reduce_sum.cu
+	src/parameter.cu
 )
 
 if (MIN_GPU_ARCH GREATER 70)
